@@ -16,7 +16,6 @@ interface Option<A> {
   filterNot(predicate: (value: A) => boolean): Option<A>;
   flatMap<B>(flatMapper: (value: A) => Option<B>): Option<B>;
   foreach(run: (value: A) => void): void;
-  get(this: Some<A>): A | undefined;
   getOrElse<B>(defaultValue: () => B): B;
   map<B>(mapper: (value: A) => B): Option<B>;
   match<B>(matcher: { Some: (a: A) => B, None: () => B }): B;
@@ -24,7 +23,7 @@ interface Option<A> {
 }
 
 /* tslint:disable:no-null-keyword only-arrow-functions */
-function Option<A>(value: A | null | undefined): Option<A> {
+function Option<A>(value: A | null | undefined): Some<A> | None_<A> {
   if ((value === null) || (value === undefined)) {
     return None;
   }

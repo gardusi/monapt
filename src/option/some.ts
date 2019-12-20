@@ -1,4 +1,4 @@
-import { None } from './none';
+import { None, None_ } from './none';
 import { Option } from './option';
 
 /**
@@ -11,11 +11,11 @@ class Some<A> implements Option<A> {
     this.value = value;
   }
 
-  isDefined(): boolean {
+  isDefined(): this is Some<A> {
     return true;
   }
 
-  isEmpty(): boolean {
+  isEmpty(): this is None_<A> {
     return false;
   }
 

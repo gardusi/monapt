@@ -1,4 +1,5 @@
 import { Option } from './option';
+import { Some } from './some';
 
 /**
  * None is a singleton class that represents emptiness.  It signals that a value that may not exist
@@ -15,11 +16,11 @@ class None_<A> implements Option<A> {
     return;
   }
 
-  isDefined(): boolean {
+  isDefined(): this is Some<A> {
     return false;
   }
 
-  isEmpty(): boolean {
+  isEmpty(): this is None_<A> {
     return true;
   }
 
@@ -41,10 +42,6 @@ class None_<A> implements Option<A> {
 
   foreach(run: (value: A) => void): void {
     return;
-  }
-
-  get(): undefined {
-    return undefined;
   }
 
   getOrElse<B, A extends B>(this: None_<A>, defaultValue: () => B): B {

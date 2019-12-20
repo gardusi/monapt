@@ -53,10 +53,6 @@ test('None#foreach', (t: ExecutionContext) => {
   t.is(executions, 0);
 });
 
-test('None#get', (t: ExecutionContext) => {
-  t.is(None.get(), undefined);
-});
-
 test('None#getOrElse', (t: ExecutionContext) => {
   t.is(
     None.getOrElse(() => 'hello'),

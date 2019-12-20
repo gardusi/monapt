@@ -11,16 +11,16 @@ class None_<A> implements Option<A> {
     return new None_<never>();
   }
 
-  get isDefined(): boolean {
+  private constructor() {
+    return;
+  }
+
+  isDefined(): boolean {
     return false;
   }
 
-  get isEmpty(): boolean {
+  isEmpty(): boolean {
     return true;
-  }
-
-  private constructor() {
-    // :TRICKY: We don't want to do anything except mark constructor as private.
   }
 
   equals<B>(other: Option<B>): boolean {
@@ -40,11 +40,11 @@ class None_<A> implements Option<A> {
   }
 
   foreach(run: (value: A) => void): void {
-    // :TRICKY: Don't do anything.
+    return;
   }
 
-  get(): A {
-    throw new Option.NoSuchElementError();
+  get(): undefined {
+    return undefined;
   }
 
   getOrElse<B, A extends B>(this: None_<A>, defaultValue: () => B): B {

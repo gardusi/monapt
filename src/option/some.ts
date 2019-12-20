@@ -7,16 +7,16 @@ import { Option } from './option';
 class Some<A> implements Option<A> {
   private value: A;
 
-  get isDefined(): boolean {
+  constructor(value: A) {
+    this.value = value;
+  }
+
+  isDefined(): boolean {
     return true;
   }
 
-  get isEmpty(): boolean {
+  isEmpty(): boolean {
     return false;
-  }
-
-  constructor(value: A) {
-    this.value = value;
   }
 
   equals<B>(other: Option<B>): boolean {

@@ -1,20 +1,19 @@
 {
-  "name": "monapt",
-  "version": "0.0.0-semantic-release",
-  "description": "Eliminate null/undefined errors in JS...and more!",
+  "name": "type-safe-monapt",
+  "version": "0.0.1",
+  "description": "Monapt Option types for JS using type safe readings",
   "author": {
-    "name": "Kevin Li",
-    "email": "jiawei.h.li+npm@gmail.com",
-    "url": "https://jiawei.li/"
+    "name": "Giovanni Gardusi",
+    "email": "giovanni.gardusi@gmail.com"
   },
   "license": "MIT",
-  "homepage": "https://github.com/jiaweihli/monapt#readme",
+  "homepage": "https://github.com/gardusi/monapt#readme",
   "bugs": {
-    "url": "https://github.com/jiaweihli/monapt/issues"
+    "url": "https://github.com/gardusi/monapt/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jiaweihli/monapt.git"
+    "url": "git+https://github.com/gardusi/monapt.git"
   },
   "scripts": {
     "build": "webpack --config build.webpack.config.js",

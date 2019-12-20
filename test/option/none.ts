@@ -4,11 +4,11 @@ import { None } from '../../src/option/none';
 import { Option } from '../../src/option/option';
 
 test('None#isDefined', (t: ExecutionContext) => {
-  t.false(None.isDefined);
+  t.false(None.isDefined());
 });
 
 test('None#isEmpty', (t: ExecutionContext) => {
-  t.true(None.isEmpty);
+  t.true(None.isEmpty());
 });
 
 test('None#equals', (t: ExecutionContext) => {
@@ -54,7 +54,7 @@ test('None#foreach', (t: ExecutionContext) => {
 });
 
 test('None#get', (t: ExecutionContext) => {
-  t.throws((): never => None.get(), { instanceOf: Option.NoSuchElementError });
+  t.is(None.get(), undefined);
 });
 
 test('None#getOrElse', (t: ExecutionContext) => {

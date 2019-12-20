@@ -26,7 +26,7 @@ class Future<A> {
   /* tslint:enable:variable-name */
 
   get isCompleted(): boolean {
-    return this.value.isDefined;
+    return this.value.isDefined();
   }
 
   get promise(): Promise<A> {

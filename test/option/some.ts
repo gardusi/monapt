@@ -6,11 +6,11 @@ import { Option } from '../../src/option/option';
 const some: Option<string> = Option('hello');
 
 test('Some#isDefined', (t: ExecutionContext) => {
-  t.true(some.isDefined);
+  t.true(some.isDefined());
 });
 
 test('Some#isEmpty', (t: ExecutionContext) => {
-  t.false(some.isEmpty);
+  t.false(some.isEmpty());
 });
 
 test('Some#equals', (t: ExecutionContext) => {
@@ -58,10 +58,14 @@ test('Some#foreach', (t: ExecutionContext) => {
 
 test('Some#get', (t: ExecutionContext) => {
   try {
-    t.is(
-      some.get(),
-      'hello'
-    );
+    if (some.isDefined()) {
+      t.is(
+        some.get(),
+        'hello'
+      );
+    } else {
+      t.fail();
+    }
   }
   catch (e) {
     t.fail();

@@ -1,4 +1,4 @@
-import { None } from './none';
+import { None, None_ } from './none';
 import { Some } from './some';
 
 /**
@@ -8,15 +8,15 @@ import { Some } from './some';
  * :TODO: Narrow self-type in `getOrElse` and `orElse` interfaces.
  */
 interface Option<A> {
-  isDefined: boolean;
-  isEmpty: boolean;
+  isDefined(this: Option<A>): this is Some<A>;
+  isEmpty(this: Option<A>): this is None_<A>;
 
   equals<B>(other: Option<B>): boolean;
   filter(predicate: (value: A) => boolean): Option<A>;
   filterNot(predicate: (value: A) => boolean): Option<A>;
   flatMap<B>(flatMapper: (value: A) => Option<B>): Option<B>;
   foreach(run: (value: A) => void): void;
-  get(): A;
+  get(this: Some<A>): A | undefined;
   getOrElse<B>(defaultValue: () => B): B;
   map<B>(mapper: (value: A) => B): Option<B>;
   match<B>(matcher: { Some: (a: A) => B, None: () => B }): B;
@@ -52,7 +52,7 @@ namespace Option {
   /* tslint:disable:only-arrow-functions */
   export function flatten<A>(options: Array<Option<A>>): Array<A> {
     return options
-      .filter((option: Option<A>): boolean => option.isDefined)
+      .filter((option: Option<A>): boolean => option.isDefined())
       .map((option: Some<A>): A => option.get());
   }
   /* tslint:enable */

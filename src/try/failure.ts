@@ -38,7 +38,7 @@ class Failure<A> implements Try<A> {
   }
 
   foreach(run: (value: A) => void): void {
-    // :TRICKY: Don't run it, since it's a failure.
+    return;
   }
 
   get(): A {

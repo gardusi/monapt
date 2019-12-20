@@ -7,20 +7,26 @@ import { Some } from './some';
  *
  * :TODO: Narrow self-type in `getOrElse` and `orElse` interfaces.
  */
-interface Option<A> {
+
+/* tslint:disable:class-name */
+interface Option_<A> {
+/* tslint:enable:class-name */
   isDefined(this: Option<A>): this is Some<A>;
   isEmpty(this: Option<A>): this is None_<A>;
 
-  equals<B>(other: Option<B>): boolean;
+  // tslint:disable-next-line: no-any
+  equals(other: Option<any>): boolean;
   filter(predicate: (value: A) => boolean): Option<A>;
   filterNot(predicate: (value: A) => boolean): Option<A>;
   flatMap<B>(flatMapper: (value: A) => Option<B>): Option<B>;
   foreach(run: (value: A) => void): void;
-  getOrElse<B>(defaultValue: () => B): B;
+  getOrElse(defaultValue: () => A): A;
   map<B>(mapper: (value: A) => B): Option<B>;
   match<B>(matcher: { Some: (a: A) => B, None: () => B }): B;
-  orElse<B>(alternative: () => Option<B>): Option<B>;
+  orElse(alternative: () => Option<A>): Option<A>;
 }
+
+type Option<A> = Some<A> | None_<A>;
 
 /* tslint:disable:no-null-keyword only-arrow-functions */
 function Option<A>(value: A | null | undefined): Some<A> | None_<A> {
@@ -58,4 +64,4 @@ namespace Option {
 }
 /* tslint:enable */
 
-export { Option };
+export { Option, Option_ };

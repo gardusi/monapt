@@ -1,10 +1,10 @@
 import { None, None_ } from './none';
-import { Option } from './option';
+import { Option, Option_ } from './option';
 
 /**
  * Some represents non-emptiness.  It signals that a value that may not exist does actually exist.
  */
-class Some<A> implements Option<A> {
+class Some<A> implements Option_<A> {
   private value: A;
 
   constructor(value: A) {
@@ -19,7 +19,8 @@ class Some<A> implements Option<A> {
     return false;
   }
 
-  equals<B>(other: Option<B>): boolean {
+  // tslint:disable-next-line: no-any
+  equals(other: Option<any>): boolean {
     return (other instanceof Some) && this.get() === other.get();
   }
 
@@ -53,7 +54,7 @@ class Some<A> implements Option<A> {
     return this.value;
   }
 
-  getOrElse<B, A extends B>(this: Some<A>, defaultValue: () => B): B {
+  getOrElse(defaultValue: () => A): A {
     return this.value;
   }
 
@@ -65,7 +66,7 @@ class Some<A> implements Option<A> {
     return matcher.Some(this.value);
   }
 
-  orElse<B, A extends B>(this: Some<A>, alternative: () => Option<B>): Option<B> {
+  orElse(alternative: () => Option<A>): Option<A> {
     return this;
   }
 }

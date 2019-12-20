@@ -1,4 +1,4 @@
-import { Option } from './option';
+import { Option, Option_ } from './option';
 import { Some } from './some';
 
 /**
@@ -6,7 +6,7 @@ import { Some } from './some';
  * doesn't exist.
  */
 /* tslint:disable:class-name */
-class None_<A> implements Option<A> {
+class None_<A> implements Option_<A> {
 /* tslint:enable:class-name */
   static get INSTANCE(): None_<never> {
     return new None_<never>();
@@ -24,7 +24,8 @@ class None_<A> implements Option<A> {
     return true;
   }
 
-  equals<B>(other: Option<B>): boolean {
+  // tslint:disable-next-line: no-any
+  equals(other: Option<any>): boolean {
     return (other instanceof None_);
   }
 
@@ -44,7 +45,7 @@ class None_<A> implements Option<A> {
     return;
   }
 
-  getOrElse<B, A extends B>(this: None_<A>, defaultValue: () => B): B {
+  getOrElse(defaultValue: () => A): A {
     return defaultValue();
   }
 
@@ -56,7 +57,7 @@ class None_<A> implements Option<A> {
     return matcher.None();
   }
 
-  orElse<B, A extends B>(this: None_<A>, alternative: () => Option<B>): Option<B> {
+  orElse(this: None_<A>, alternative: () => Option<A>): Option<A> {
     return alternative();
   }
 }
